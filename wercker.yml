@@ -12,7 +12,7 @@ build:
           echo $WERCKER_RUN_ID$IMAGE_BASE
           export IMAGE_ID=$WERCKER_RUN_ID$IMAGE_BASE
           echo "Image is $IMAGE_ID"
-          export TAGNAME="1lab.user01"
+          export TAGNAME="1lab.user10"
     - internal/docker-build:
        image-name: $IMAGE_BASE
        dockerfile: Dockerfile
@@ -28,7 +28,7 @@ build:
         code: |
           export NODE_ENV='testing'
           echo "Image is Pushed..." 
-          export TAGNAME="1lab.user01"
+          export TAGNAME="1lab.user10"
           export PUSHED_IMAGE="${REPONAME}:${TAGNAME}"
           echo "image pushed is $PUSHED_IMAGE"
     - internal/docker-run:
@@ -65,10 +65,10 @@ build:
     - slack-notifier:
           url: $SLACK_URL 
           channel: notifications 
-          custom_message: Deploying $WERCKER_GIT_BRANCH to $WERCKER_DEPLOYTARGET_NAME ($WERCKER_DEPLOY_URL) 
+          custom_message: Bulding Image $WERCKER_GIT_BRANCH to $WERCKER_DEPLOYTARGET_NAME ($WERCKER_DEPLOY_URL) 
 
 
-deploy-to-minikube:
+deploy-to-oke:
   box:
         id: alpine
         cmd: /bin/sh
